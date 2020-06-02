@@ -1,0 +1,8 @@
+App\Entity\Application:
+    application_1:
+        age: <randomNumber($nbDigits = NULL, $strict = false) >
+        motivation: <sentence()>
+        wage: <randomNumber($nbDigits = NULL, $strict = false) >
+        resume: <sentence()>
+        users: "@user_*"
+        offers: "@offer_*"

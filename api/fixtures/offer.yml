@@ -1,0 +1,9 @@
+App\Entity\Offer:
+    offer_{1..30}:
+        name: <word()>
+        companyDetails: <sentence()>
+        description: <sentence()>
+        startAt: <date($format = 'Y-m-d', $max = 'now')>
+        contractType: <word()>
+        workplace: <sentence()>
+        author: "@user_*"
