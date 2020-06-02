@@ -3,7 +3,8 @@ App\Entity\Offer:
         name: <word()>
         companyDetails: <sentence()>
         description: <sentence()>
-        startAt: <date($format = 'Y-m-d', $max = 'now')>
-        contractType: <word()>
+        startAt: <dateTime('Y-m-d')>
+        contratType:  randomElement(array ('cdd','cdi','interim', 'apprentice'))
         workplace: <sentence()>
-        author: "@user_*"
+        author: '@user_*'
+        applications: '@application_*'

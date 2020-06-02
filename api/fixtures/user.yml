@@ -1,13 +1,14 @@
 App\Entity\User:
-    user_{1....20}:
-        email: <email()>
-        roles: <>
-        password: <regexify('[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}');>
-        firstname: <firstName($gender = null|'male'|'female')>
-        lastname: <lastName()>
-        gender: <title($gender = null|'male'|'female')>
-        profileImage: <image($dir = '/tmp', $width = 640, $height = 480)>
-        adresse: <address()>
-        token: <regexify('[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}');>
-        applications: "@application_*"
-        offers: "@offer_*"
+  user_{1..20}:
+    email: <email()>
+    roles: ["ROLE_ADMIN", "ROLE_USER"]
+    password: <regexify('[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}')>
+    firstname: <firstName('male'|'female')>
+    lastname: <lastName()>
+    gender: <title('male'|'female')>
+    profileImage: <image( '/tmp', 640,  480)>
+    address: <address()>
+    token: <regexify('[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}')>
+    isActive: <boolean()>
+    offers: '<numberBetween(1, 30)>x @offer_*'
+    applications: '<numberBetween(1, 20)>x @application_*'
