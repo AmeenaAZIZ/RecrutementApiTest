@@ -1,10 +1,7 @@
 Feature: _User_
   Background:
     Given the following fixtures files are loaded:
-      | users          |
-
-
-
+      | users
 
   Scenario: test post user
     Given I have the payload
@@ -26,24 +23,15 @@ Feature: _User_
     When the response status code should be 201
     Then print last response
 
-
-
   Scenario: test get user
     Given I request "GET /users"
     When the response status code should be 201
     Then print last response
 
-
-
   Scenario: test get user by id
     Given I request "GET /users/id"
     When the response status code should be 201
     Then print last response
-
-
-
-
-
 
   Scenario: test post user
     Given I have the payload
