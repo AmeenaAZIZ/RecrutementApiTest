@@ -12,6 +12,8 @@ trait FixturesTrait
      */
     private FixtureManager $fixtureManager;
 
+
+
     /**
      * @Given /^the fixtures file "([^"]*)" is loaded$/
      */
@@ -20,12 +22,15 @@ trait FixturesTrait
         $this->fixtureManager->load(['./fixtures/' . $file . '.yml']);
     }
 
+
+
     /**
      * @Given the following fixtures files are loaded:
      */
     public function theFixturesFilesAreLoaded(TableNode $table)
     {
-        $files = array_map(fn($row) => './fixtures/' . $row[0] . '.yaml', $table->getRows());
+
+        $files = array_map(fn($row) => './fixtures/' . $row[0] . '.yaml',$table->getRows());
 
         $this->fixtureManager->load($files);
     }
