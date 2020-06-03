@@ -1,6 +1,7 @@
 Feature: _Offer_
   Background:
     Given the following fixtures files are loaded:
+      | parameters     |
       | offers         |
 
 

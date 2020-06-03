@@ -28,15 +28,10 @@ Feature: _User_
 
 
 
-
-
   Scenario: test get user
     Given I request "GET /users"
     When the response status code should be 201
     Then print last response
-
-
-
 
 
 

@@ -4,5 +4,5 @@ App\Entity\Application:
     motivation: <sentence()>
     wage: <randomDigitNotNull()>
     resume: <sentence()>
-    offer: '<numberBetween(1, 30)>x @offer_*'
-    applicant: '<numberBetween(1, 20)>x @user_*'
+    offer: '@offer_*'
+    applicant: '@user_*'

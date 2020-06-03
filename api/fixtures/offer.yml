@@ -7,4 +7,4 @@ App\Entity\Offer:
         contratType:  randomElement(array ('cdd','cdi','interim', 'apprentice'))
         workplace: <sentence()>
         author: '@user_*'
-        applications: '@application_*'
+        applications: '<numberBetween(1, 20)>x @application_*'
