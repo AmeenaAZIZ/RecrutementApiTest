@@ -2,6 +2,7 @@
 
 namespace App\Tests\Behat\Context\Traits;
 
+use App\Tests\Behat\Manager\ReferenceManager;
 use DAMA\DoctrineTestBundle\Doctrine\DBAL\StaticDriver;
 
 trait HookTrait
@@ -34,6 +35,7 @@ trait HookTrait
         //var_dump("after sena");
         $this->requestHeaders["content-type"] = "";
         StaticDriver::rollBack();
+
     }
 
     /**

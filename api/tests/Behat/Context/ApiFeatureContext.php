@@ -11,8 +11,10 @@ use App\Tests\Behat\Context\Traits\{
     OutputTrait,
     RequestTrait,
     ScopeTrait,
-    UtilsTrait
+    UtilsTrait,
+
 };
+
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
 use Symfony\Component\HttpKernel\KernelInterface;

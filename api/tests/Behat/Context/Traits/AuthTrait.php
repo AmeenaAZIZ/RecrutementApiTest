@@ -4,6 +4,7 @@ namespace App\Tests\Behat\Context\Traits;
 
 trait AuthTrait
 {
+
     /**
      * The user to use with HTTP basic authentication
      *

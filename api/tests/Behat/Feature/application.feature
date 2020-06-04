@@ -1,26 +1,25 @@
 Feature: _Application_
-  Background:
-    Given the following fixtures files are loaded:
-      | application    |
-      | user    |
-      | offer    |
-
 
 
   Scenario: test get application
 
     Given I request "GET /applications"
     When the response status code should be 200
+    And the "hydra:member" property should be an array
+    Then scope into the "hydra:view" property
     Then print last response
+
+
 
 
     Given I have the payload
     """
       {
-        "applicant": "/users/2"
+        "applicant": "/users/2367"
       }
     """
     Given I request "POST /applications"
+    And t
     When the response status code should be 201
     Then print last response
 
@@ -34,11 +33,11 @@ Feature: _Application_
     """
     Given I request "POST /applications"
     When the response status code should be 400
-    Then print last response
 
 
 
-    Given I request "GET /applications/3"
+
+    Given I request "GET /applications/2352"
     When the response status code should be 200
     Then print last response
 
@@ -47,15 +46,15 @@ Feature: _Application_
     Given I have the payload
     """
       {
-        "applicant": "/users/2"
+        "applicant": "/users/2360"
       }
     """
-    Given I request "PUT /applications/3"
+    Given I request "PUT /applications/2365"
     When the response status code should be 200
     Then print last response
 
 
-    Given I request "DELETE /applications/5"
+    Given I request "DELETE /applications/2368"
     When the response status code should be 204
     Then print last response
 
