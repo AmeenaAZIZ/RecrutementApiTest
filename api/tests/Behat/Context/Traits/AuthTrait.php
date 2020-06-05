@@ -8,6 +8,7 @@ use App\Entity\User;
 
 trait AuthTrait
 {
+
     /**
      * @var AuthManager
      */

@@ -16,6 +16,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "lexik/jwt-authentication-bundle": "^2.6",
         "martin-georgiev/postgresql-for-doctrine": "^1.4",
+        "rdx/behat-variables": "^1.2",
         "stof/doctrine-extensions-bundle": "^1.4",
         "symfony/apache-pack": "^1.0",
         "symfony/console": "5.0.*",

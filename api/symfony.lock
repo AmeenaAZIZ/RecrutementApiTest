@@ -415,6 +415,9 @@
     "ralouphie/getallheaders": {
         "version": "3.0.3"
     },
+    "rdx/behat-variables": {
+        "version": "1.2"
+    },
     "sebastian/code-unit": {
         "version": "1.0.2"
     },

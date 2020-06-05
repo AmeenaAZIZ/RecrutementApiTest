@@ -223,4 +223,18 @@ trait RequestTrait
 
         return $this->arrayGet($payload, $this->scope, true);
     }
+    use HookTrait;
+
+    /**
+     * @override Given I send a :method request to :url with body:
+     */
+    public function iSendARequestToWithBody($method, $url, PyStringNode $body)
+    {
+        $rawBody = $body->getRaw();
+        $this->sharingContext->renderTwigTemplate($rawBody);
+        $newBody = new PyStringNode(explode("\n", $rawBody), $body->getLine());
+
+        return parent::iSendARequestToWithBody($method, $url, $newBody);
+    }
+
 }

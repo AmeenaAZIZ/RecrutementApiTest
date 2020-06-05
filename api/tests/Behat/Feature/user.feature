@@ -1,9 +1,5 @@
 Feature: _User_
-  Background:
-    Given the following fixtures files are loaded:
-      | application    |
-      | user    |
-      | offer    |
+
 
   Scenario:  User
     Given I have the payload
