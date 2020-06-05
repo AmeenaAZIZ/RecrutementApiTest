@@ -1,54 +1,53 @@
 Feature: _User_
   Background:
     Given the following fixtures files are loaded:
-      | users
+      | application     |
+      | user     |
+      | offer     |
 
-  Scenario: test post user
+  Scenario:  User
     Given I have the payload
     """
-    {
-        "email": "test@test.com",
+     {
+        "email": "truc@gmail.com",
         "roles": [
-          "ROLE_USER"
+          "ROLE_RECRUITER"
         ],
-        "password": "$argon2id$v=19$m=65536,t=4,p=1$cMH2swfacaqZCwGA5JWOPA$J09JznitkqUp0uGDsslacn63HhhNEikbhjbZtuYm4ns"
+        "password": "test",
         "firstname": "Paul",
         "lastname": "JEAN",
-        "gender": "male",
-        "address": "233 AVENUE DE PARIS",
-        "isValide": true
+        "gender": "M",
+        "address": "233 AVENUE DE PARIS"
     }
     """
     Given I request "POST /users"
     When the response status code should be 201
     Then print last response
 
-  Scenario: test get user
-    Given I request "GET /users"
-    When the response status code should be 201
-    Then print last response
-
-  Scenario: test get user by id
-    Given I request "GET /users/id"
-    When the response status code should be 201
-    Then print last response
-
-  Scenario: test post user
     Given I have the payload
     """
-    {
-        "email": "test@test.com",
-        "roles": [
-          "ROLE_USER"
-        ],
-        "password": "$argon2id$v=19$m=65536,t=4,p=1$cMH2swfacaqZCwGA5JWOPA$J09JznitkqUp0uGDsslacn63HhhNEikbhjbZtuYm4ns"
-        "firstname": "Paul",
-        "lastname": "JEAN",
-        "gender": "male",
-        "address": "233 AVENUE DE PARIS",
+     {
+        "email": "truc@gmail.com",
+        "password": "test"
     }
     """
-    Given I request "POST /users/{token}/activate"
-    When the response status code should be 201
+    Given I request "POST /authentication_token"
+    When the response status code should be 200
     Then print last response
+
+    # User cannot Login with bad credentials
+    
+    # Given I authenticate with user "truc1@gmail.com" and password "test"
+    # Then I request "POST /authentication_token"
+    # Then the response status code should be 200
+    # Then print last response
+
+    # Given I request "GET /users/user.id"
+    # Then the response status code should be 200
+    # Then print last response
+
+
+
+
+
 

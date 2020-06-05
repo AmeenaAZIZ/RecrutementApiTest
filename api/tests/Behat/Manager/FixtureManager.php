@@ -43,6 +43,7 @@ class FixtureManager implements ProcessorInterface
      */
     public function postProcess(string $fixtureId, $object): void
     {
+        dump($fixtureId, $object);
         // do nothing now
     }
 }
