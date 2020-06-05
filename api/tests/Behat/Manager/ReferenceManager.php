@@ -1,44 +1,68 @@
 <?php
 
+
+declare(strict_types=1);
+
 namespace App\Tests\Behat\Manager;
+
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpKernel\KernelInterface;
+use Twig\Environment;
 
 class ReferenceManager
 {
-    /**
-     * @Then One SQL ident is created
-     */
-    public function theResponseBodyShouldBeAnInteger() {
-        $this->theResponseContentTypeShouldBe('application/json');
-        $this->theResponseCodeShouldBe(201);
+    /** @var array */
+    private $values = [];
 
-        $body = $this->response->getBody()->getContents();
-        if (!ctype_digit($body)) {
-            throw New Exception(sprintf('Expected integer response but got "%s".', $body));
+    // facile d'accéder et de partager les proprieter
+    /** @var Environment */
+    private $twig;
+
+    public function setKernel(KernelInterface $kernel): void
+    {
+        /** @var ContainerInterface $container */
+        $container = $kernel->getContainer();
+
+        if (!$container->has('twig')) {
+            throw new \LogicException(
+                "Could not find 'twig' service. Try running 'composer req --dev twig/twig symfony/twig-bundle'."
+            );
         }
 
-        $this->output = $body;
-        echo "Output is '$this->output'\n";
+        /** @var Environment $twig */
+        $twig = $container->get('twig');
+        $this->twig = $twig;
     }
 
-    /**
-     * @When I send a :method request to :uri
-     *
-     * @param $method
-     * @param $uri
-     */
-    public function iSendARequestTo($method, $uri)
+    public function renderTwigTemplate(string &$string): void
     {
-        echo "Output is '$this->output'\n";
-        $uri = str_replace('{id}', $this->output, $uri);
+        $template = $this->twig->createTemplate($string);
 
-        try {
-            if ($method == 'POST' || $method == 'PATCH') {
-                $this->response = $this->client->request($method, $uri, ['json' => $this->requestPayload]);
-            } else {
-                $this->response = $this->client->request($method, $uri);
-            }
-        } catch (GuzzleHttp\Exception\ClientException $ex) {
-            throw new Exception($uri . "\n" . $ex->getResponse()->getBody()->getContents());
-        }
+        $string = $this->twig->render($template, $this->values);
+    }
+
+    public function offsetExists($offset): bool
+    {
+        return array_key_exists($offset, $this->values);
+    }
+
+    public function offsetGet($offset)
+    {
+        return $this->values[$offset];
+    }
+
+    public function offsetSet($offset, $value): void
+    {
+        $this->values[$offset] = $value;
+    }
+
+    public function offsetUnset($offset): void
+    {
+        unset($this->values[$offset]);
+    }
+
+    public function merge(array $array): void
+    {
+        $this->values = array_merge($this->values, $array);
     }
 }

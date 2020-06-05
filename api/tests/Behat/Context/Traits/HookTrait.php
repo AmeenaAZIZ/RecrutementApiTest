@@ -3,6 +3,8 @@
 namespace App\Tests\Behat\Context\Traits;
 
 use App\Tests\Behat\Manager\ReferenceManager;
+use Behat\Behat\Context\Environment\InitializedContextEnvironment;
+use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use DAMA\DoctrineTestBundle\Doctrine\DBAL\StaticDriver;
 
 trait HookTrait
@@ -27,6 +29,7 @@ trait HookTrait
         StaticDriver::beginTransaction();
     }
 
+
     /**
      * @AfterScenario
      */
@@ -36,7 +39,10 @@ trait HookTrait
         $this->requestHeaders["content-type"] = "";
         StaticDriver::rollBack();
 
+
     }
+
+
 
     /**
      * @AfterSuite

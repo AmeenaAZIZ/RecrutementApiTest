@@ -15,11 +15,10 @@ Feature: _Application_
     Given I have the payload
     """
       {
-        "applicant": "/users/2367"
+        "applicant": "/users/2515"
       }
     """
     Given I request "POST /applications"
-    And t
     When the response status code should be 201
     Then print last response
 
@@ -37,7 +36,7 @@ Feature: _Application_
 
 
 
-    Given I request "GET /applications/2352"
+    Given I request "GET /applications/2497"
     When the response status code should be 200
     Then print last response
 
@@ -46,15 +45,15 @@ Feature: _Application_
     Given I have the payload
     """
       {
-        "applicant": "/users/2360"
+        "applicant": "/users/2506"
       }
     """
-    Given I request "PUT /applications/2365"
+    Given I request "PUT /applications/2510"
     When the response status code should be 200
     Then print last response
 
 
-    Given I request "DELETE /applications/2368"
+    Given I request "DELETE /applications/2509"
     When the response status code should be 204
     Then print last response
 
