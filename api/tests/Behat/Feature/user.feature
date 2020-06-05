@@ -1,11 +1,15 @@
 Feature: _User_
-
+  Background:
+    Given the following fixtures files are loaded:
+      | application     |
+      | user     |
+      | offer     |
 
   Scenario:  User
     Given I have the payload
     """
      {
-        "email": "truc1@gmail.com",
+        "email": "truc@gmail.com",
         "roles": [
           "ROLE_RECRUITER"
         ],
@@ -23,7 +27,7 @@ Feature: _User_
     Given I have the payload
     """
      {
-        "email": "truc1@gmail.com",
+        "email": "truc@gmail.com",
         "password": "test"
     }
     """
@@ -33,10 +37,10 @@ Feature: _User_
 
     # User cannot Login with bad credentials
     
-    Given I authenticate with user "truc1@gmail.com" and password "test"
+    # Given I authenticate with user "truc1@gmail.com" and password "test"
     # Then I request "POST /authentication_token"
-    Then the response status code should be 200
-    Then print last response
+    # Then the response status code should be 200
+    # Then print last response
 
     # Given I request "GET /users/user.id"
     # Then the response status code should be 200
